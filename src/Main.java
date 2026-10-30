@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         String[] books = new String[10];
@@ -24,13 +24,7 @@ public class Main {
                 } else
                     System.out.println(" Library is full ");
             } else if (choice == 2) {
-                if (count == 0) {
-                    System.out.println("No books yet");
-                } else {
-                    for (int i = 0; i < count; i++) {
-                        System.out.println((i + 1) + ") " + books[i]);
-                    }
-                }
+                showBooks(books, count);
             } else if (choice == 3) {
                 System.out.println(" Search title: ");
                 String Keyword = sc.nextLine();
@@ -50,4 +44,13 @@ public class Main {
         }
         System.out.println("Goodbye!");
 }
+static void showBooks(String[] books, int count){
+        if (count == 0) {
+            System.out.println("No books yet");
+        } else {
+            for (int i = 0; i< count; i++) {
+                System.out.println((i + 1 ) + ") " + books[i]);
+            }
+        }
+    }
 }
