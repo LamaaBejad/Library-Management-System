@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Main {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         String[] books = new String[10];
@@ -27,30 +27,34 @@ public class Main {
                 showBooks(books, count);
             } else if (choice == 3) {
                 System.out.println(" Search title: ");
-                String Keyword = sc.nextLine();
-                boolean found = false;
-
-                for (int i = 0; i < count; i++) {
-                    if (books[i].equalsIgnoreCase(Keyword)) {
-                        System.out.println("Found: " + books[i] + " (#" + (i + 1) + ")");
-                        found = true;
-
-                    }
-                }
-                if (!found) {
-                    System.out.println("Not found");
-                }
+                String keyword = sc.nextLine();
+                searchBook(books, count, keyword);
             }
         }
         System.out.println("Goodbye!");
-}
-static void showBooks(String[] books, int count){
+    }
+
+    static void showBooks(String[] books, int count) {
         if (count == 0) {
             System.out.println("No books yet");
         } else {
-            for (int i = 0; i< count; i++) {
-                System.out.println((i + 1 ) + ") " + books[i]);
+            for (int i = 0; i < count; i++) {
+                System.out.println((i + 1) + ") " + books[i]);
             }
+        }
+    }
+
+    static void searchBook(String[] books, int count, String keyword) {
+        boolean found = false;
+
+        for (int i = 0; i < count; i++) {
+            if (books[i].equalsIgnoreCase(keyword)) {
+                System.out.println("Found: " + books[i] + " (#" + (i + 1) + ")");
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Not found");
         }
     }
 }
