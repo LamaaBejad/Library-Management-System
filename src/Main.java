@@ -32,10 +32,22 @@ public class Main {
                     }
                 }
             } else if (choice == 3) {
-                System.out.println(" Search Selected ");
+                System.out.println(" Search title: ");
+                String Keyword = sc.nextLine();
+                boolean found = false;
+
+                for (int i = 0; i < count; i++) {
+                    if (books[i].equalsIgnoreCase(Keyword)) {
+                        System.out.println("Found: " + books[i] + " (#" + (i + 1) + ")");
+                        found = true;
+
+                    }
+                }
+                if (!found) {
+                    System.out.println("Not found");
+                }
             }
         }
         System.out.println("Goodbye!");
-
-    }
+}
 }
