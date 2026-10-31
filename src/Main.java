@@ -21,14 +21,17 @@ public class Main {
                     books[count] = sc.nextLine();
                     count++;
                     System.out.println(" Book added ");
-                } else
+                } else {
                     System.out.println(" Library is full ");
+                }
             } else if (choice == 2) {
                 showBooks(books, count);
             } else if (choice == 3) {
                 System.out.println(" Search title: ");
                 String keyword = sc.nextLine();
                 searchBook(books, count, keyword);
+            } else if (choice !=4 ) {
+                System.out.println("Invalid choice");
             }
         }
         System.out.println("Goodbye!");
