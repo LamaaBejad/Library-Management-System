@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
-        String[] books = new String[10];
+        Book[] books = new Book[10];
         int count = 0;
         while (choice != 4) {
             System.out.println("=== Library System ===");
@@ -18,7 +18,7 @@ public class Main {
             if (choice == 1) {
                 if (count < books.length) {
                     System.out.print("Title: ");
-                    books[count] = sc.nextLine();
+                    books[count] =new Book (sc.nextLine());
                     count++;
                     System.out.println(" Book added ");
                 } else {
@@ -37,22 +37,22 @@ public class Main {
         System.out.println("Goodbye!");
     }
 
-    static void showBooks(String[] books, int count) {
+    static void showBooks(Book[] books, int count) {
         if (count == 0) {
             System.out.println("No books yet");
         } else {
             for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + ") " + books[i]);
+                System.out.println((i + 1) + ") " + books[i].getTitle() );
             }
         }
     }
 
-    static void searchBook(String[] books, int count, String keyword) {
+    static void searchBook(Book[] books, int count, String keyword) {
         boolean found = false;
 
         for (int i = 0; i < count; i++) {
-            if (books[i].equalsIgnoreCase(keyword)) {
-                System.out.println("Found: " + books[i] + " (#" + (i + 1) + ")");
+            if (books[i].getTitle().equalsIgnoreCase(keyword)) {
+                System.out.println("Found: " + books[i].getTitle() + " (#" + (i + 1) + ")");
                 found = true;
             }
         }
