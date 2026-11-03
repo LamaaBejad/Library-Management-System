@@ -3,8 +3,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
-        Book[] books = new Book[10];
-        int count = 0;
+       Library library = new Library() ;
         while (choice != 4) {
             System.out.println("=== Library System ===");
             System.out.println("1) Add book");
@@ -16,20 +15,13 @@ public class Main {
             sc.nextLine();
 
             if (choice == 1) {
-                if (count < books.length) {
-                    System.out.print("Title: ");
-                    books[count] =new Book (sc.nextLine());
-                    count++;
-                    System.out.println(" Book added ");
-                } else {
-                    System.out.println(" Library is full ");
-                }
+                System.out.println("Title: ");
+                library.addBook(sc.nextLine() );
             } else if (choice == 2) {
-                showBooks(books, count);
+                library.showBooks();
             } else if (choice == 3) {
                 System.out.println(" Search title: ");
-                String keyword = sc.nextLine();
-                searchBook(books, count, keyword);
+                library.searchBook(sc.nextLine() );
             } else if (choice !=4 ) {
                 System.out.println("Invalid choice");
             }
@@ -37,27 +29,4 @@ public class Main {
         System.out.println("Goodbye!");
     }
 
-    static void showBooks(Book[] books, int count) {
-        if (count == 0) {
-            System.out.println("No books yet");
-        } else {
-            for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + ") " + books[i].getTitle() );
-            }
-        }
     }
-
-    static void searchBook(Book[] books, int count, String keyword) {
-        boolean found = false;
-
-        for (int i = 0; i < count; i++) {
-            if (books[i].getTitle().equalsIgnoreCase(keyword)) {
-                System.out.println("Found: " + books[i].getTitle() + " (#" + (i + 1) + ")");
-                found = true;
-            }
-        }
-        if (!found) {
-            System.out.println("Not found");
-        }
-    }
-}
