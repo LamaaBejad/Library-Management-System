@@ -1,10 +1,13 @@
 
 public class Library {
+
     private Book[] books = new Book[10];
     private int count = 0;
+    private Member[] members = new Member[10];
+    private int memberCount = 0;
 
     public void addBook(String title) {
-        if (count < books.length ) {
+        if (count < books.length) {
             books[count] = new Book(title);
             count++;
             System.out.println("Book added");
@@ -12,25 +15,47 @@ public class Library {
             System.out.println("Library is full");
         }
     }
+
     public void showBooks() {
-        if (count == 0 ) {
+        if (count == 0) {
             System.out.println("No books yet");
         } else {
-            for (int i =0; i < count; i++) {
-                System.out.println((i+1) + ") " + books[i].getTitle() );
+            for (int i = 0; i < count; i++) {
+                System.out.println((i + 1) + ") " + books[i].getTitle());
             }
         }
     }
+
     public void searchBook(String keyword) {
         boolean found = false;
-        for(int i = 0; i<count; i++){
-            if (books[i].getTitle().equalsIgnoreCase(keyword) ){
+        for (int i = 0; i < count; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(keyword)) {
                 System.out.println("Found " + books[i].getTitle() + " (#" + (i + 1) + ")");
                 found = true;
             }
         }
-        if(! found) {
+        if (!found) {
             System.out.println("Not found");
+        }
+    }
+
+    public void addMembers(int id, String name) {
+        if (memberCount < members.length) {
+            members[memberCount] = new Member(id, name);
+            memberCount++;
+            System.out.println("Member added");
+        } else {
+            System.out.println("Member list is full");
+        }
+    }
+
+    public void showMembers() {
+        if (memberCount == 0) {
+            System.out.println("No members yet");
+        } else {
+            for (int i = 0; i < memberCount; i++) {
+                System.out.println(members[i].getId() + " - " + members[i].getName());
+            }
         }
     }
 }
