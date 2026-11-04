@@ -47,7 +47,8 @@ public class Main {
                 library.returnBook(sc.nextLine());
             } else if (choice != 8) {
                 System.out.println("Invalid choice");
-            }
+            } else
+
             System.out.println("Goodbye!");
         }
     }

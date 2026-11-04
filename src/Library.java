@@ -21,7 +21,13 @@ public class Library {
             System.out.println("No books yet");
         } else {
             for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + ") " + books[i].getTitle());
+                String status;
+                if (books[i].isAvailable()) {
+                    status = "Available";
+                } else {
+                    status = "Borrowed";
+                }
+                System.out.println((i + 1) + ") " + books[i].getTitle() + " - " + status);
             }
         }
     }
