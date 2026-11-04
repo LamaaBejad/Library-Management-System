@@ -1,9 +1,9 @@
 
 public class Library {
 
-    private Book[] books = new Book[10];
+    private final Book[] books = new Book[10];
     private int count = 0;
-    private Member[] members = new Member[10];
+    private final  Member[] members = new Member[10];
     private int memberCount = 0;
 
     public void addBook(String title) {
@@ -39,7 +39,7 @@ public class Library {
         }
     }
 
-    public void addMembers(int id, String name) {
+    public void addMember(int id, String name) {
         if (memberCount < members.length) {
             members[memberCount] = new Member(id, name);
             memberCount++;
