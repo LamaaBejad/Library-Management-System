@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Library {
     private final ArrayList<Book> books = new ArrayList<>();
-    private final Member[] members = new Member[10];
-    private int memberCount = 0;
+    private final HashMap<Integer, Member> members = new HashMap<>();
 
     public void addBook(String title) {
         books.add(new Book(title));
@@ -32,21 +32,20 @@ public class Library {
     }
 
     public void addMember(int id, String name) {
-        if (memberCount < members.length) {
-            members[memberCount] = new Member(id, name);
-            memberCount++;
-            System.out.println("Member added");
+        if (members.containsKey(id)) {
+            System.out.println("Member id already exists");
         } else {
-            System.out.println("Member list is full");
+            members.put(id, new Member(id, name));
+            System.out.println("Member added");
         }
     }
 
     public void showMembers() {
-        if (memberCount == 0) {
+        if (members.isEmpty()) {
             System.out.println("No members yet");
         } else {
-            for (int i = 0; i < memberCount; i++) {
-                System.out.println(members[i].getId() + " - " + members[i].getName());
+            for (Member m : members.values()) {
+                System.out.println(m.getId() + " - " + m.getName());
             }
         }
     }
@@ -61,12 +60,7 @@ public class Library {
     }
 
     private Member findMember(int id) {
-        for (int i = 0; i < memberCount; i++) {
-            if (members[i].getId() == id) {
-                return members[i];
-            }
-        }
-        return null;
+        return members.get(id);
     }
 
     public void borrowBook(int memberId, String title) {
