@@ -58,4 +58,36 @@ public class Library {
             }
         }
     }
+    private Book findBook(String title) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(title)) {
+                return books[i];
+            }
+        }
+        return null;
+    }
+
+    private Member findMember(int id) {
+        for (int i = 0; i < memberCount; i++) {
+            if (members[i].getId() == id) {
+                return members[i];
+            }
+        }
+        return null;
+    }
+    public void borrowBook(int memberId, String title) {
+        Member member = findMember(memberId);
+        Book book = findBook(title);
+
+        if (member == null) {
+            System.out.println("Member not found");
+        } else if (book == null) {
+            System.out.println("Book not found");
+        } else if (!book.isAvailable()) {
+            System.out.println("Book is already borrowed");
+        } else {
+            book.setAvailable(false);
+            System.out.println(member.getName() + " borrowed " + book.getTitle());
+        }
+    }
 }
