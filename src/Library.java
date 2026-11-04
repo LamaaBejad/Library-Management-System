@@ -1,47 +1,33 @@
+import java.util.ArrayList;
 
 public class Library {
-
-    private final Book[] books = new Book[10];
-    private int count = 0;
-    private final  Member[] members = new Member[10];
+    private final ArrayList<Book> books = new ArrayList<>();
+    private final Member[] members = new Member[10];
     private int memberCount = 0;
 
     public void addBook(String title) {
-        if (count < books.length) {
-            books[count] = new Book(title);
-            count++;
-            System.out.println("Book added");
-        } else {
-            System.out.println("Library is full");
-        }
+        books.add(new Book(title));
+        System.out.println("Book added");
     }
 
     public void showBooks() {
-        if (count == 0) {
+        if (books.isEmpty()) {
             System.out.println("No books yet");
         } else {
-            for (int i = 0; i < count; i++) {
-                String status;
-                if (books[i].isAvailable()) {
-                    status = "Available";
-                } else {
-                    status = "Borrowed";
-                }
-                System.out.println((i + 1) + ") " + books[i].getTitle() + " - " + status);
+            for (int i = 0; i < books.size(); i++) {
+                Book b = books.get(i);
+                String status = b.isAvailable() ? "Available" : "Borrowed";
+                System.out.println((i + 1) + ") " + b.getTitle() + " - " + status);
             }
         }
     }
 
     public void searchBook(String keyword) {
-        boolean found = false;
-        for (int i = 0; i < count; i++) {
-            if (books[i].getTitle().equalsIgnoreCase(keyword)) {
-                System.out.println("Found " + books[i].getTitle() + " (#" + (i + 1) + ")");
-                found = true;
-            }
-        }
-        if (!found) {
+        Book book = findBook(keyword);
+        if (book == null) {
             System.out.println("Not found");
+        } else {
+            System.out.println("Found: " + book.getTitle());
         }
     }
 
@@ -64,10 +50,11 @@ public class Library {
             }
         }
     }
+
     private Book findBook(String title) {
-        for (int i = 0; i < count; i++) {
-            if (books[i].getTitle().equalsIgnoreCase(title)) {
-                return books[i];
+        for (Book b : books) {
+            if (b.getTitle().equalsIgnoreCase(title)) {
+                return b;
             }
         }
         return null;
@@ -81,6 +68,7 @@ public class Library {
         }
         return null;
     }
+
     public void borrowBook(int memberId, String title) {
         Member member = findMember(memberId);
         Book book = findBook(title);
@@ -96,6 +84,7 @@ public class Library {
             System.out.println(member.getName() + " borrowed " + book.getTitle());
         }
     }
+
     public void returnBook(String title) {
         Book book = findBook(title);
 
