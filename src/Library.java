@@ -90,4 +90,16 @@ public class Library {
             System.out.println(member.getName() + " borrowed " + book.getTitle());
         }
     }
+    public void returnBook(String title) {
+        Book book = findBook(title);
+
+        if (book == null) {
+            System.out.println("Book not found");
+        } else if (book.isAvailable()) {
+            System.out.println("Book was not borrowed");
+        } else {
+            book.setAvailable(true);
+            System.out.println(book.getTitle() + " returned");
+        }
+    }
 }
